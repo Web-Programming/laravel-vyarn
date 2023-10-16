@@ -13,48 +13,32 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// buat route halaman dosen
+
+Route::get('/dosen', function () {
+    return view('dosen');
 });
 
-// buat route halaman profil
 
-Route::get('/profile', function () {
-    return view('profile');
+Route::get('/dosen/index', function() {
+  return view ('dosen.index');
 });
 
-// route dengan parameter
 
-// Route::get('/ mahasiswa/{nama?}', function ($nama = 'Karina') {
-//     echo "<h2>hlow smwanya</h2>";
-//     echo "Nama saya $nama";
-// });
- // route dengan parameter >1
+// route fakultas
 
- Route::get('/mahasiswa/{nama?}/{pekerjaan?}', function ($nama = 'Karina', $pekerjaan
-  = 'mahasiswa'){
-    echo "<h2>Hloww smwanyh</h2>";
-    echo "Nama saya $nama, sebagai $pekerjaan";
-  });
+Route::get('fakultas', function(){
+  //return view ('fakultas.index', ["ilkom" => "Fakultas Ilmu Komputer dan 
+  //Rekayasa"]);
+//   return view('fakultas.index', ["fakultas" => ["Fakultas Ilmu Komputer dan
+//    Rekayasa", "Fakultas Ekonomi dan Bisnis"]]);
+//return view('fakultas.index')->with("fakultas", ["Fakultas Ilmu Komputer
+//dan Rekayasa", "Fakultas Ekonomi dan Bisnis"]);
+// $fakultas = ["Fakultas Ilmu Komputer dan Rekayasa", "Fakultas Ekonomi dan Bisnis"];
+// return view ('fakultas.index', compact('fakultas'));
 
-  //redirect
-
-  Route::get("/hubungi", function(){
-    echo "<h1Contact Us</h1>";
-  })->name('/call');
-
-  Route::redirect("/contact", "/hubungi");
-
-  Route::get("/halo", function(){
-    echo "<a href=", route('call'), "'>", "</a>";
-  });
-
-  Route::prefix('/dosen')->group(function(){
-    Route::get('/jadwal', function() {
-        echo "<h2>jadwal</h2>";
-    });
-
-    Route::get('/jadwal', function() {
-        echo "<h2>materi perkuliahan</h2>";
-    });
-    });
+$kampus = "Universitas Multi Data Palembang";
+//$fakultas = [];
+$fakultas = ["Fakultas Ilmu Komputer dan Rekayasa", "Fakultas Ekonomi dan Bisnis"];
+return view('fakultas.index', compact('fakultas', 'kampus'));
+});
