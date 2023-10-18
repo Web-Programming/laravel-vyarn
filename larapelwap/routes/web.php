@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\DosenController;
+use App\Http\Controllers\KurikulumController;
+use App\Http\Controllers\ProdiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,7 +31,7 @@ Route::get('/dosen/index', function() {
 // route fakultas
 
 Route::get('fakultas', function(){
-  //return view ('fakultas.index', ["ilkom" => "Fakultas Ilmu Komputer dan 
+  //return view ('fakultas.index', ["ilkom" => "Fakultas Ilmu Komputer dan
   //Rekayasa"]);
 //   return view('fakultas.index', ["fakultas" => ["Fakultas Ilmu Komputer dan
 //    Rekayasa", "Fakultas Ekonomi dan Bisnis"]]);
@@ -42,3 +45,9 @@ $kampus = "Universitas Multi Data Palembang";
 $fakultas = ["Fakultas Ilmu Komputer dan Rekayasa", "Fakultas Ekonomi dan Bisnis"];
 return view('fakultas.index', compact('fakultas', 'kampus'));
 });
+
+Route::get('/prodi', [ProdiController::class, 'index']);
+
+Route::resource("/kurikulum",KurikulumController::class);
+
+Route::apiResource('/dosen',DosenController::class);
